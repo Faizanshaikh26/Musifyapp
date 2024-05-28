@@ -4,7 +4,8 @@ import axios from 'axios';
 // import Navbar from '../Components/Navbar';
 import { usePlayer } from '../Context/PlayerContext';
 
-// import Footer from '../Components/Footer';
+import Footer from '../Components/Footer';
+import clockicon from '../assets/clock_icon.png'
 
 function Displayalbums() {
   const { id } = useParams();
@@ -58,7 +59,7 @@ function Displayalbums() {
           <h2 className="text-4xl font-bold mb-3 md:text-7xl">{album.title}</h2>
           <h4 className="text-sm">{album.description}</h4>
           <p className="mt-1 flex items-center">
-            <img className="inline-block w-5 h-5 mr-1" src="/path-to-spotify-logo.png" alt="Spotify Logo" />
+            <img className="inline-block w-5 h-5 mr-1" src="" alt="Spotify Logo" />
             <b>Spotify</b>
             <b className="ml-1">{album.songs.length} songs</b>
             <span className="ml-1">{totalDuration} min</span>
@@ -73,7 +74,7 @@ function Displayalbums() {
         <p className="flex items-center col-span-1 ml-3">Album</p>
         <p className="hidden sm:flex items-center col-span-1">Date</p>
         <div className="flex justify-center items-center col-span-1">
-          <img src='' alt="Clock Icon" className="w-4" />
+          <img src={clockicon} alt="Clock Icon" className="w-4" />
         </div>
       </div>
 
@@ -91,7 +92,7 @@ function Displayalbums() {
           <p className="text-[15px] text-center truncate col-span-1">{(song.duration / 60).toFixed(2)} min</p>
         </div>
       ))}
-      {/* <Footer/> */}
+      <Footer/>
       
     </>
   );

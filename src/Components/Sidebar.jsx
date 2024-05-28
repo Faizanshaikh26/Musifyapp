@@ -75,7 +75,7 @@ function Sidebar({ children }) {
           </li>
           <li className="profile">
             <div className="profile_details">
-              <img src="profile.jpeg" alt="profile image" />
+              <img src="" alt="profile image" />
               <div className="profile_content">
                 <div className="name">Anna Jhon</div>
                 <div className="designation">Admin</div>
