@@ -2,6 +2,7 @@ import React from 'react'
 import Slider from './Components/Slider'
 import DisplayHome from './Components/DisplayHome'
 import Player from './Components/Player'
+import Footer from './Components/Footer'
 
 function Home() {
   return (
@@ -9,6 +10,7 @@ function Home() {
       <Slider/>
   
       <DisplayHome/>
+      <Footer/>
     </div>
   )
 }
