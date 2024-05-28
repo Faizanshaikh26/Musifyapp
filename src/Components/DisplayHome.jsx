@@ -86,6 +86,7 @@ function DisplayHome() {
                     src={song.songImage}
                     alt={song.title}
                     className="rounded w-40 h-40 object-cover"
+                    loading="lazy"
                   />
                   <p className="font-bold mt-2 mb-1">{song.title}</p>
                 </div>

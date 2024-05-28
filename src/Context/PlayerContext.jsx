@@ -29,9 +29,9 @@ export const PlayerContextProvider = ({ children }) => {
           setCurrentTrack({ albumIndex: 0, songIndex: 0, ...result.albums[0].songs[0] });
         }
       }
-      setIsLoading(false);
     } catch (err) {
       console.error(err);
+    } finally {
       setIsLoading(false);
     }
   }, []);
