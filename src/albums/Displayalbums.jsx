@@ -81,7 +81,7 @@ function Displayalbums() {
       <hr />
 
       {album.songs.map((song, index) => (
-        <div key={index} className="grid grid-cols-3 sm:grid-cols-4 gap-2 p-2 items-center text-[#a7a7a7] hover:bg-[#ffffff2b] cursor-pointer" onClick={() => playWithId(song._id)}>
+        <div key={index} className="grid grid-cols-3 sm:grid-cols-4 gap-2 p-2 items-center text-[#9e9696] hover:bg-[#ffffff2b] cursor-pointer" onClick={() => playWithId(song._id)}>
           <div className="flex items-center col-span-1">
             <b className="mr-4 text-[#a7a7a7]">{index + 1}</b>
             <img src={song.songImage} alt="" className="inline w-10 h-10 mr-2 object-cover rounded" />
