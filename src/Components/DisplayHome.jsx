@@ -31,8 +31,10 @@ function DisplayHome() {
     fetchAlbumData();
   }, [fetchAlbumData]);
 
-  const keywords = useMemo(() => ["Lofi (Sukkon Vibes)","Top 100 India", "Top 50 Global", "Trending","Broken Hearts","Most Romantic"], []);
+  const keywords = useMemo(() => ["Top 100 India", "Top 50 Global", "Trending","Broken Hearts","Most Romantic",], []);
   const singleKeywords = useMemo(() => ["Most Romantic"], []);
+  const _2ndsingleKeywords = useMemo(() => ["Lofi (Sukkon Vibes)"], []);
+  
 
   const filteredAlbums = useMemo(() => {
     return albumData.filter((album) =>
@@ -47,6 +49,16 @@ function DisplayHome() {
       )
     );
   }, [albumData, singleKeywords]);
+
+  const filtered2ndSingleAlbums = useMemo(() => {
+    return albumData.filter((singleAlbum) =>
+      _2ndsingleKeywords.some((singleKeyword) =>
+        singleAlbum.title.toLowerCase().includes(singleKeyword.toLowerCase())
+      )
+    );
+  }, [albumData, singleKeywords]);
+
+  
 
   if (loading) {
     return <div>Loading...</div>;
@@ -95,6 +107,33 @@ function DisplayHome() {
           ))}
         </div>
       </div>
+
+      <div className="mb-4">
+        <h1 className="my-5 font-bold text-2xl">Lofi {'Sukoon 💜'}</h1>
+        <div className="flex overflow-auto">
+          {filtered2ndSingleAlbums.map((album, index) => (
+            <div key={index} className="flex">
+              {album.songs.map((song, songIndex) => (
+                <div
+                  key={songIndex}
+                  className="min-w-[180px] p-2 px-2 rounded cursor-pointer hover:bg-[#ffffff26] flex flex-col items-center"
+                  onClick={() => playWithId(song._id)}
+                >
+                  <img
+                    src={song.songImage}
+                    alt={song.title}
+                    className="rounded w-40 h-40 object-cover"
+                    loading="lazy"
+                  />
+                  <p className="font-bold mt-2 mb-1">{song.title}</p>
+                </div>
+              ))}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      
     </div>
   );
 }
