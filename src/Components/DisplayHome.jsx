@@ -31,7 +31,7 @@ function DisplayHome() {
     fetchAlbumData();
   }, [fetchAlbumData]);
 
-  const keywords = useMemo(() => ["Top 100 India", "Top 50 Global", "Trending"], []);
+  const keywords = useMemo(() => ["Top 100 India", "Top 50 Global", "Trending","Broken Hearts"], []);
   const singleKeywords = useMemo(() => ["Most Romantic"], []);
 
   const filteredAlbums = useMemo(() => {
