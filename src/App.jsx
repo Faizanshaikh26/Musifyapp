@@ -6,6 +6,7 @@ import { Route, Routes, useLocation } from 'react-router-dom';
 import Player from './Components/Player';
 import { usePlayer } from './Context/PlayerContext';
 
+
 // Lazy load the Displayalbums component
 const Displayalbums = lazy(() => import('./albums/Displayalbums'));
 
@@ -36,6 +37,7 @@ function App() {
           <Routes>
             <Route path='/' element={<Home />} />
             <Route path='/album/:id' element={<Displayalbums />} />
+          
           </Routes>
         </Suspense>
         <Player />

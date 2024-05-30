@@ -31,7 +31,7 @@ function DisplayHome() {
     fetchAlbumData();
   }, [fetchAlbumData]);
 
-  const keywords = useMemo(() => ["Top 100 India", "Top 50 Global", "Trending","Broken Hearts","Most Romantic",], []);
+  const keywords = useMemo(() => ["Top 100 India", "Top 50 Global", "Trending","Broken Hearts","Most Romantic","Latest"], []);
   const singleKeywords = useMemo(() => ["Most Romantic"], []);
   const _2ndsingleKeywords = useMemo(() => ["Lofi (Sukkon Vibes)"], []);
   

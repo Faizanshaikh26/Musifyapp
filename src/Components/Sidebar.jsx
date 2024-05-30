@@ -46,7 +46,7 @@ function Sidebar({ children }) {
             <span className="tooltip">Message</span>
           </li>
           <li>
-            <NavLink to="/login" activeclassname="active">
+            <NavLink to="/loginsignup" activeclassname="active">
               <i className="bx bx-pie-chart-alt-2"></i>
               <span className="link_name">Analytics</span>
             </NavLink>
