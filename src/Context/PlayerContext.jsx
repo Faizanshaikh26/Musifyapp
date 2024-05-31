@@ -46,7 +46,17 @@ export const PlayerContextProvider = ({ children }) => {
       if (playPromise !== undefined) {
         playPromise
           .then(() => setIsPlaying(true))
-          .catch(error => console.error('Error while starting playback:', error));
+          .catch(error => {
+            // Check if the error is related to autoplay policy
+            if (error.name === 'NotAllowedError' || error.name === 'NotSupportedError') {
+              // Autoplay is not allowed, handle it here
+              // You can start playback muted or wait for user interaction
+              // Example: audioRef.current.muted = true;
+            } else {
+              // Other playback errors
+              console.error('Error while starting playback:', error);
+            }
+          });
       }
     }
   }, []);

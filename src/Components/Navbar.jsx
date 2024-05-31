@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+
 function Navbar() {
   const handleLeftClick = () => {
     alert('Left icon clicked!');
