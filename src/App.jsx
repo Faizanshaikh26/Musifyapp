@@ -5,6 +5,8 @@ import Home from './Home';
 import { Route, Routes, useLocation } from 'react-router-dom';
 import Player from './Components/Player';
 import { usePlayer } from './Context/PlayerContext';
+import Signup from './Pages/Signup';
+import Login from './Pages/Login';
 
 
 // Lazy load the Displayalbums component
@@ -37,7 +39,8 @@ function App() {
           <Routes>
             <Route path='/' element={<Home />} />
             <Route path='/album/:id' element={<Displayalbums />} />
-          
+          <Route path='/signUp' element={<Signup/>}/>
+          <Route path='/login' element={<Login/>}/>
           </Routes>
         </Suspense>
         <Player />

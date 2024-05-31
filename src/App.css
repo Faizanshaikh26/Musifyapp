@@ -14,7 +14,7 @@ body{
 .seek-ring-pause {
   transition: left 0.5s ease-in-out; /* Example transition */
 }
-/* styles.css */
+
 .loader {
 border: 2px solid rgba(255, 255, 255, 0.3);
 border-radius: 50%;
@@ -29,6 +29,14 @@ animation: spin 1s linear infinite;
 100% { transform: rotate(360deg); }
 }
 
+
+.logintoast {
+  width: 250px;
+        height: 50px;
+        font-size: 13px;
+        padding: 10px;
+        margin: 10px 80px;
+}
 
 
 

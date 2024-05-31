@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 function Navbar() {
   const handleLeftClick = () => {
@@ -18,9 +19,21 @@ function Navbar() {
            onClick={handleRightClick}></i>
       </div>
       <div>
-      <button className="bg-[#3b3b3b] hover:bg-[#444444] text-white font-bold py-2 px-4 rounded " >
-  Login
+
+{
+  localStorage.getItem("auth-token")  ? (
+    <button className="bg-[#3b3b3b] hover:bg-[#444444] text-white font-bold py-2 px-4 rounded "  onClick={()=>{
+      localStorage.removeItem("auth-token");
+      window.location.replace("/");
+    }}>
+     Logout
 </button>
+  ) : (<Link to='/login'>
+  <button className="bg-[#3b3b3b] hover:bg-[#444444] text-white font-bold py-2 px-4 rounded " >
+       Login
+  </button>
+  </Link> )
+}
 
 
       </div>
@@ -29,3 +42,5 @@ function Navbar() {
 }
 
 export default Navbar;
+
+
