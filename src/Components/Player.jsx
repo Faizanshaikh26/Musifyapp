@@ -82,7 +82,7 @@ function Player() {
               <div className="w-1.5 h-1.5 bg-cyan-500 dark:bg-cyan-400 rounded-full"></div>
             </div>
           </div>
-          <div className="flex relative top-[-35px] left-[18%] text-sm leading-6 font-medium tabular-nums gap-1 lg:left-[30%] md:left-[40%]">
+          <div className="flex relative top-[-35px] left-[18%] text-sm leading-6 font-medium tabular-nums gap-1 lg:left-[30%] md:left-[40%] md:top-[-20px]">
             <div className="text-cyan-500 dark:text-slate-100 text-[13px] md:text-[19px] lg:text-[20px]">
               {isPlaying || !isNaN(time.currentTime.minute)
                 ? formatTime(time.currentTime.minute, time.currentTime.second)
@@ -95,7 +95,7 @@ function Player() {
                 : '0:00'}
             </div>
           </div>
-          <div className="flex justify-end lg:right-[15%] lg:top-[94px] md:left-[30%] md:top-16 absolute top-[14px] right-[10px] gap-3.5 text-slate-200">
+          <div className="flex justify-end lg:right-[17%] lg:top-[94px] md:right-[10%] md:top-[90px] absolute top-[14px] right-[10px] gap-3.5 text-slate-200">
             <i className="fa-solid fa-backward text-[23px] lg:text-[27px] cursor-pointer" onClick={previousTrack}></i>
             {isLoading ? (
               <i className="fa-solid fa-spinner text-[23px] lg:text-[27px] cursor-pointer animate-spin"></i>
@@ -105,11 +105,13 @@ function Player() {
               <i className="fa-solid fa-play text-[23px] lg:text-[27px] cursor-pointer" onClick={play}></i>
             )}
             <i className="fa-solid fa-forward text-[23px] lg:text-[27px] cursor-pointer" onClick={nextTrack}></i>
-            <div className='hidden lg:block md:block'>
-              <i className="fa-solid fa-volume-high text-[27px] lg:text-[23px] cursor-pointer"></i>
-            </div>
+           
           </div>
-          <div className="flex items-center justify-end w-full mt-2 md:mt-0 md:mr-4 lg:mr-8">
+          <div className="flex items-center justify-end w-full mt-1 md:mt-0 md:mr-2 lg:mr-4 md:absolute md:bottom-[50px] md:left-[-20px] lg:absolute lg:bottom-[15px]" >
+            <i
+              className="fa-solid fa-volume-high text-[16px] md:text-[18px] lg:text-[20px] cursor-pointer mr-1 transition-transform duration-200 ease-in-out hover:scale-110"
+              title="Adjust volume"
+            ></i>
             <input
               type="range"
               min="0"
@@ -117,7 +119,10 @@ function Player() {
               step="0.01"
               value={volume}
               onChange={handleVolumeChange}
-              className="w-24 md:w-32 lg:w-40"
+              className="w-20 md:w-24 lg:w-28 transition-all duration-300 ease-in-out cursor-pointer bg-gray-200 rounded-lg appearance-none focus:outline-none focus:ring-2 focus:ring-cyan-500 h-1.5"
+              style={{
+                background: `linear-gradient(to right, #00B4D8 ${volume * 100}%, #E5E5E5 ${volume * 100}%)`,
+              }}
             />
           </div>
         </div>

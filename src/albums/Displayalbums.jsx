@@ -52,7 +52,7 @@ function Displayalbums() {
       {/* <Navbar /> */}
       <div className="mt-6 flex gap-5 flex-col md:flex-row md:items-end">
         <div className="w-48 h-48 rounded overflow-hidden">
-          <img src={album.albumImage} alt={album.title} className="w-full h-full object-cover" />
+          <img src={album.albumImage} alt={album.title} className=" w-full h-full object-cover" />
         </div>
         <div className="flex flex-col">
           <p>Playlist</p>
@@ -81,15 +81,15 @@ function Displayalbums() {
       <hr />
 
       {album.songs.map((song, index) => (
-        <div key={index} className="grid grid-cols-3 sm:grid-cols-4 gap-2 p-2 items-center text-[#9e9696] hover:bg-[#ffffff2b] cursor-pointer" onClick={() => playWithId(song._id)}>
+        <div key={index} className="grid grid-cols-3 sm:grid-cols-4 gap-2 p-2 items-center text-[#9e9696] hover:bg-[#ffffff2b] cursor-pointer " onClick={() => playWithId(song._id)}>
           <div className="flex items-center col-span-1">
-            <b className="mr-4 text-[#a7a7a7]">{index + 1}</b>
-            <img src={song.songImage} alt="" className="inline w-10 h-10 mr-2 object-cover rounded" />
-            <span className="truncate max-w-[10rem]">{song.title}</span>
+            <b className="mr-4 text-[#a7a7a7] text-[11px] lg:text-[15px]">{index + 1}</b>
+            <img src={song.songImage} alt="" className="hidden lg:inline md:inline w-10 h-10 mr-2 object-cover rounded" />
+            <span className="truncate max-w-[10rem] text-[11px] lg:text-[15px]">{song.title}</span>
           </div>
-          <p className="text-[14px] ml-3 truncate max-w-[8rem] col-span-1">{song.artist}</p>
+          <p className="text-[11px] ml-3 truncate max-w-[8rem] col-span-1 lg:text-[15px]">{song.artist}</p>
           <p className="text-[15px] hidden sm:block truncate max-w-[6rem] col-span-1">5 days</p>
-          <p className="text-[15px] text-center truncate col-span-1">{(song.duration / 60).toFixed(2)} min</p>
+          <p className="text-[11px] lg:text-[15px] text-center truncate col-span-1">{(song.duration / 60).toFixed(2)} min</p>
         </div>
       ))}
       <Footer/>
