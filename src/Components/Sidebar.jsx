@@ -19,11 +19,16 @@ function Sidebar({ children }) {
           <i className="bx bx-menu" id="btn" onClick={toggleSidebar}></i>
         </div>
         <ul className="nav-list">
-          <li>
-            <i className="bx bx-search"></i>
-            <input type="text" placeholder="Search..." />
+         
+
+        <li>
+            <NavLink to="/search" activeclassname="active">
+            <i className='bx bx-search-alt' ></i>
+              <span className="link_name">Search</span>
+            </NavLink>
             <span className="tooltip">Search</span>
           </li>
+
           <li>
             <NavLink to="/dashboard" activeclassname="active">
               <i className="bx bx-grid-alt"></i>

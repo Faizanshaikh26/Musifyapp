@@ -7,6 +7,7 @@ import Player from './Components/Player';
 import { usePlayer } from './Context/PlayerContext';
 import Signup from './Pages/Signup';
 import Login from './Pages/Login';
+import Search from './Pages/Search';
 
 
 // Lazy load the Displayalbums component
@@ -41,6 +42,7 @@ function App() {
             <Route path='/album/:id' element={<Displayalbums />} />
           <Route path='/signUp' element={<Signup/>}/>
           <Route path='/login' element={<Login/>}/>
+          <Route path='/search' element={<Search/>}/>
           </Routes>
         </Suspense>
         <Player />
