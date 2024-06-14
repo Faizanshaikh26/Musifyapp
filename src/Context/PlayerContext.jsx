@@ -28,22 +28,16 @@ export const PlayerContextProvider = ({ children }) => {
         if (result.albums.length > 0 && result.albums[0].songs.length > 0) {
           setCurrentTrack({ albumIndex: 0, songIndex: 0, ...result.albums[0].songs[0] });
         }
-      } else {
-        console.error("Failed to fetch album data");
       }
     } catch (err) {
-      console.error("Error fetching album data:", err);
+      console.error(err);
     } finally {
       setIsLoading(false);
     }
   }, []);
 
   useEffect(() => {
-    const startRenderTime = performance.now();
-    fetchAlbumData().then(() => {
-      const endRenderTime = performance.now();
-      console.log(`Render time: ${endRenderTime - startRenderTime} ms`);
-    });
+    fetchAlbumData();
   }, [fetchAlbumData]);
 
   const play = useCallback(() => {
