@@ -50,6 +50,19 @@ export const PlayerContextProvider = ({ children }) => {
       }
     }
   }, []);
+  
+  // Add this event listener to play audio when there is a user interaction
+  useEffect(() => {
+    const playOnInteraction = () => {
+      play();
+      window.removeEventListener('click', playOnInteraction);
+    };
+    window.addEventListener('click', playOnInteraction);
+    return () => {
+      window.removeEventListener('click', playOnInteraction);
+    };
+  }, [play]);
+  
 
   const pause = useCallback(() => {
     if (audioRef.current) {

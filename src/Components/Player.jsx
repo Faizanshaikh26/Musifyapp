@@ -34,6 +34,10 @@ function Player() {
 
   const formatTime = (minute, second) => `${minute}:${second < 10 ? `0${second}` : second}`;
 
+  const handlePlayButtonClick = () => {
+    play();
+  };
+
   if (!currentTrack) {
     return null;
   }
@@ -102,7 +106,7 @@ function Player() {
             ) : isPlaying ? (
               <i className="fa-solid fa-pause text-[23px] lg:text-[27px] cursor-pointer" onClick={pause}></i>
             ) : (
-              <i className="fa-solid fa-play text-[23px] lg:text-[27px] cursor-pointer" onClick={play}></i>
+              <i className="fa-solid fa-play text-[23px] lg:text-[27px] cursor-pointer" onClick={handlePlayButtonClick}></i>
             )}
             <i className="fa-solid fa-forward text-[23px] lg:text-[27px] cursor-pointer" onClick={nextTrack}></i>
            

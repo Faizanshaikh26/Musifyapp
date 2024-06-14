@@ -3,16 +3,15 @@ import Sidebar from './Components/Sidebar';
 import './App.css';
 import Home from './Home';
 import { Route, Routes, useLocation } from 'react-router-dom';
-import Player from './Components/Player';
 import { usePlayer } from './Context/PlayerContext';
 import Signup from './Pages/Signup';
 import Login from './Pages/Login';
 import Search from './Pages/Search';
 
-
-
 // Lazy load the Displayalbums component
 const Displayalbums = lazy(() => import('./albums/Displayalbums'));
+// Lazy load the Player component
+const Player = lazy(() => import('./Components/Player'));
 
 function App() {
   const { audioRef, albumData } = usePlayer();
@@ -41,13 +40,12 @@ function App() {
           <Routes>
             <Route path='/' element={<Home />} />
             <Route path='/album/:id' element={<Displayalbums />} />
-          <Route path='/signUp' element={<Signup/>}/>
-          <Route path='/login' element={<Login/>}/>
-          <Route path='/search' element={<Search/>}/>
-      
+            <Route path='/signUp' element={<Signup/>}/>
+            <Route path='/login' element={<Login/>}/>
+            <Route path='/search' element={<Search/>}/>
           </Routes>
+          <Player />
         </Suspense>
-        <Player />
       </Sidebar>
       <audio ref={audioRef} preload='auto' />
     </div>
