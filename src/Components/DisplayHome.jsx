@@ -1,40 +1,13 @@
-import React, { useEffect, useState, useCallback, useMemo } from "react";
+import React, { useEffect, useMemo } from "react";
 import { usePlayer } from "../Context/PlayerContext";
 import AlbumItem from '../albums/Albumitem';
 
 function DisplayHome() {
-  const [albumData, setAlbumData] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const { playWithId } = usePlayer();
-
-  const fetchAlbumData = useCallback(async () => {
-    const startTime = performance.now();
-    try {
-      const response = await fetch("https://musify-rest-api.onrender.com", {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json"
-        }
-      });
-      const data = await response.json();
-      setAlbumData(data.albums);
-    } catch (error) {
-      console.error("Error fetching album data:", error);
-    } finally {
-      setLoading(false);
-      const endTime = performance.now();
-      console.log(`Fetch and render time: ${endTime - startTime} ms`);
-    }
-  }, []);
-
-  useEffect(() => {
-    fetchAlbumData();
-  }, [fetchAlbumData]);
+  const { albumData, playWithId, isLoading } = usePlayer();
 
   const keywords = useMemo(() => ["Top 100 India", "Top 50 Global", "Trending","Broken Hearts","Most Romantic","Latest"], []);
   const singleKeywords = useMemo(() => ["Most Romantic"], []);
   const _2ndsingleKeywords = useMemo(() => ["Lofi (Sukkon Vibes)"], []);
-  
 
   const filteredAlbums = useMemo(() => {
     return albumData.filter((album) =>
@@ -56,11 +29,9 @@ function DisplayHome() {
         singleAlbum.title.toLowerCase().includes(singleKeyword.toLowerCase())
       )
     );
-  }, [albumData, singleKeywords]);
+  }, [albumData, _2ndsingleKeywords]);
 
-  
-
-  if (loading) {
+  if (isLoading) {
     return <div>Loading...</div>;
   }
 
@@ -132,8 +103,6 @@ function DisplayHome() {
           ))}
         </div>
       </div>
-
-      
     </div>
   );
 }

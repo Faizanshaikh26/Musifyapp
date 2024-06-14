@@ -10,6 +10,7 @@ import Login from './Pages/Login';
 import Search from './Pages/Search';
 
 
+
 // Lazy load the Displayalbums component
 const Displayalbums = lazy(() => import('./albums/Displayalbums'));
 
@@ -43,6 +44,7 @@ function App() {
           <Route path='/signUp' element={<Signup/>}/>
           <Route path='/login' element={<Login/>}/>
           <Route path='/search' element={<Search/>}/>
+      
           </Routes>
         </Suspense>
         <Player />
