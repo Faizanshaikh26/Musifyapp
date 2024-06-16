@@ -10,7 +10,7 @@ function DisplayHome() {
   const fetchAlbumData = useCallback(async () => {
     const startTime = performance.now();
     try {
-      const response = await fetch("https://musify-rest-api.onrender.com", {
+      const response = await fetch("https://musifyrestapi-vsb4.onrender.com", {
         method: "GET",
         headers: {
           "Content-Type": "application/json"
@@ -31,7 +31,7 @@ function DisplayHome() {
     fetchAlbumData();
   }, [fetchAlbumData]);
 
-  const singleKeywords = useMemo(() => ["Most Romantic"], []);
+  const singleKeywords = useMemo(() => ["Top 100 India"], []);
   const _2ndsingleKeywords = useMemo(() => ["Lofi (Sukkon Vibes)"], []);
 
   const filteredSingleAlbums = useMemo(() => {
@@ -56,7 +56,7 @@ function DisplayHome() {
 
   return (
     <div>
-      <AlbumSection title="Most Romantic" albums={filteredSingleAlbums} playWithId={playWithId} />
+      <AlbumSection title="Top 100 India" albums={filteredSingleAlbums} playWithId={playWithId} />
       <AlbumSection title="Lofi Sukoon 💜" albums={filtered2ndSingleAlbums} playWithId={playWithId} />
     </div>
   );

@@ -21,7 +21,7 @@ export const PlayerContextProvider = ({ children }) => {
   const fetchAlbumData = useCallback(async () => {
     try {
       setIsLoading(true);
-      const response = await fetch("https://musify-rest-api.onrender.com");
+      const response = await fetch("https://musifyrestapi-vsb4.onrender.com");
       if (response.ok) {
         const result = await response.json();
         setAlbumData(result.albums);
