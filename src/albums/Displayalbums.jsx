@@ -1,35 +1,30 @@
-import React, { useEffect, useState, useCallback, useMemo } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import { useParams } from 'react-router-dom';
-import axios from 'axios';
-// import Navbar from '../Components/Navbar';
 import { usePlayer } from '../Context/PlayerContext';
-
 import Footer from '../Components/Footer';
-import clockicon from '../assets/clock_icon.png'
+import clockicon from '../assets/clock_icon.png';
 
 function Displayalbums() {
   const { id } = useParams();
+  const { albumData, playWithId } = usePlayer();
   const [album, setAlbum] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const { playWithId } = usePlayer();
-
-  const fetchAlbum = useCallback(async () => {
-    try {
-      setLoading(true);
-      const response = await axios.get(`https://musify-rest-api.onrender.com/api/${id}`); // Update with your API endpoint
-      setAlbum(response.data);
-      setLoading(false);
-    } catch (error) {
-      console.error('Error fetching album:', error);
-      setError(error);
-      setLoading(false);
-    }
-  }, [id]);
 
   useEffect(() => {
-    fetchAlbum();
-  }, [fetchAlbum]);
+    if (albumData.length === 0) {
+      return;
+    }
+
+    const selectedAlbum = albumData.find(album => album._id === id);
+    if (selectedAlbum) {
+      setAlbum(selectedAlbum);
+      setLoading(false);
+    } else {
+      setError('Album not found');
+      setLoading(false);
+    }
+  }, [id, albumData]);
 
   const totalDuration = useMemo(() => {
     return (album?.songs.reduce((acc, song) => acc + song.duration, 0) / 60).toFixed(2);
@@ -40,7 +35,7 @@ function Displayalbums() {
   }
 
   if (error) {
-    return <div>Error fetching album. Please try again later.</div>;
+    return <div>Error: {error}</div>;
   }
 
   if (!album) {
@@ -49,7 +44,6 @@ function Displayalbums() {
 
   return (
     <>
-      {/* <Navbar /> */}
       <div className="mt-6 flex gap-5 flex-col md:flex-row md:items-end">
         <div className="w-48 h-48 rounded overflow-hidden">
           <img src={album.albumImage} alt={album.title} className=" w-full h-full object-cover" />
@@ -93,7 +87,6 @@ function Displayalbums() {
         </div>
       ))}
       <Footer/>
-      
     </>
   );
 }

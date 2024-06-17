@@ -11,6 +11,7 @@ export const PlayerContextProvider = ({ children }) => {
   const [currentTrack, setCurrentTrack] = useState(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const dataFetched = useRef(false); // Use a ref to track if data has been fetched
   const audioRef = useRef(null);
   const [currentTime, setCurrentTime] = useState(0);
   const [time, setTime] = useState({
@@ -19,6 +20,8 @@ export const PlayerContextProvider = ({ children }) => {
   });
 
   const fetchAlbumData = useCallback(async () => {
+    if (dataFetched.current) return; // Prevent duplicate fetches
+    console.log("fetchAlbumData called");
     try {
       setIsLoading(true);
       const response = await fetch("https://musify-rest-api.onrender.com");
@@ -28,6 +31,7 @@ export const PlayerContextProvider = ({ children }) => {
         if (result.albums.length > 0 && result.albums[0].songs.length > 0) {
           setCurrentTrack({ albumIndex: 0, songIndex: 0, ...result.albums[0].songs[0] });
         }
+        dataFetched.current = true; // Set ref to true after data is fetched
       }
     } catch (err) {
       console.error(err);
@@ -37,6 +41,7 @@ export const PlayerContextProvider = ({ children }) => {
   }, []);
 
   useEffect(() => {
+    console.log("useEffect to fetch album data called");
     fetchAlbumData();
   }, [fetchAlbumData]);
 
@@ -50,7 +55,7 @@ export const PlayerContextProvider = ({ children }) => {
       }
     }
   }, []);
-  
+
   // Add this event listener to play audio when there is a user interaction
   useEffect(() => {
     const playOnInteraction = () => {
@@ -62,7 +67,6 @@ export const PlayerContextProvider = ({ children }) => {
       window.removeEventListener('click', playOnInteraction);
     };
   }, [play]);
-  
 
   const pause = useCallback(() => {
     if (audioRef.current) {
