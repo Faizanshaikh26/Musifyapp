@@ -24,7 +24,7 @@ function App() {
     if (isAlbum) {
       const album = albumData.find(album => album._id === albumId);
       if (album) {
-        displayRef.current.style.background = `linear-gradient(${album.bgcolor}, #121212)`;
+        displayRef.current.style.background = `linear-gradient(${album.bgColor}, #121212)`;
       } else {
         displayRef.current.style.background = '#121212';
       }
